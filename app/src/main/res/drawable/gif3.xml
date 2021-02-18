@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false"
+    >
+    <item android:drawable="@drawable/bizi_000" android:duration="100"/>
+    <item android:drawable="@drawable/bizi_001" android:duration="100"/>
+    <item android:drawable="@drawable/bizi_002" android:duration="100" />
+    <item android:drawable="@drawable/bizi_003" android:duration="100" />
+    <item android:drawable="@drawable/bizi_004" android:duration="100"/>
+    <item android:drawable="@drawable/bizi_005" android:duration="100"/>
+    <item android:drawable="@drawable/bizi_006" android:duration="100"/>
+    <item android:drawable="@drawable/bizi_007" android:duration="100"/>
+    <item android:drawable="@drawable/bizi_008" android:duration="100"/>
+    <item android:drawable="@drawable/bizi_009" android:duration="100"/>
+    <item android:drawable="@drawable/bizi_010" android:duration="100"/>
+    <item android:drawable="@drawable/bizi_011" android:duration="100"/>
+    <item android:drawable="@drawable/bizi_012" android:duration="100" />
+    <item android:drawable="@drawable/bizi_013" android:duration="100" />
+    <item android:drawable="@drawable/bizi_014" android:duration="100"/>
+    <item android:drawable="@drawable/bizi_015" android:duration="100"/>
+    <item android:drawable="@drawable/bizi_016" android:duration="100"/>
+    <item android:drawable="@drawable/bizi_017" android:duration="100"/>
+</animation-list>

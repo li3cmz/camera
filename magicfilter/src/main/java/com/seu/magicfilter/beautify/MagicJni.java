@@ -1,5 +1,7 @@
 package com.seu.magicfilter.beautify;
 
+
+
 import android.graphics.Bitmap;
 import android.util.Log;
 

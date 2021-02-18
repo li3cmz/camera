@@ -22,14 +22,10 @@ import android.opengl.EGLSurface;
 import android.opengl.GLES20;
 import android.util.Log;
 
-import com.seu.magicfilter.utils.OpenGlUtils;
-
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 
 /**
@@ -180,7 +176,7 @@ public class EglSurfaceBase {
         int height = getHeight();
         IntBuffer ib = IntBuffer.allocate(width * height);
         GLES20.glReadPixels(0, 0, width, height, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, ib);
-        OpenGlUtils.checkGlError("glReadPixels");
+      //  OpenGlUtils.checkGlError("glReadPixels");
 
         BufferedOutputStream bos = null;
         try {

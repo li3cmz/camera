@@ -56,6 +56,19 @@ public class DictationUtil {
                         break;
                     case SAYHI:
                         curState = audio_item_state.get(2);
+                        curIndex = 2;
+                        break;
+                    case QIEZI:
+                        curState = audio_item_state.get(3);
+                        curIndex =3;
+                        break;
+                    case JIAYOU:
+                        curState = audio_item_state.get(4);
+                        curIndex = 4;
+                        break;
+                    case BANG:
+                        curState = audio_item_state.get(5);
+                        curIndex = 5;
                         break;
                     default:
                         break;
@@ -87,6 +100,19 @@ public class DictationUtil {
                         break;
                     case SAYHI:
                         curState = audio_item_state.get(2);
+                        curIndex = 2;
+                        break;
+                    case QIEZI:
+                        curState = audio_item_state.get(3);
+                        curIndex =3;
+                        break;
+                    case JIAYOU:
+                        curState = audio_item_state.get(4);
+                        curIndex = 4;
+                        break;
+                    case BANG:
+                        curState = audio_item_state.get(5);
+                        curIndex = 5;
                         break;
                     default:
                         break;
@@ -98,6 +124,22 @@ public class DictationUtil {
                     //do nothing
                 }
                 else if (curIndex == 1){
+                    //弹出给用户输入自定义字符的框框
+                    startSpeechListener(context, audioItemType, audio_item_state, listener);
+                }
+                else if (curIndex == 2){
+                    //弹出给用户输入自定义字符的框框
+                    startSpeechListener(context, audioItemType, audio_item_state, listener);
+                }
+                else if (curIndex == 3){
+                    //弹出给用户输入自定义字符的框框
+                    startSpeechListener(context, audioItemType, audio_item_state, listener);
+                }
+                else if (curIndex == 4){
+                    //弹出给用户输入自定义字符的框框
+                    startSpeechListener(context, audioItemType, audio_item_state, listener);
+                }
+                else if (curIndex == 5){
                     //弹出给用户输入自定义字符的框框
                     startSpeechListener(context, audioItemType, audio_item_state, listener);
                 }

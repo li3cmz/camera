@@ -2,10 +2,8 @@ package com.seu.magicfilter.filter.advanced;
 
 import android.opengl.GLES20;
 
-import com.seu.magicfilter.MagicEngine;
 import com.seu.magicfilter.R;
 import com.seu.magicfilter.filter.base.gpuimage.GPUImageFilter;
-import com.seu.magicfilter.utils.MagicParams;
 import com.seu.magicfilter.utils.OpenGlUtils;
 
 public class MagicAmaroFilter extends GPUImageFilter{
@@ -55,9 +53,9 @@ public class MagicAmaroFilter extends GPUImageFilter{
 		setFloat(mGLStrengthLocation, 1.0f);
 	    runOnDraw(new Runnable(){
 		    public void run(){
-		    	inputTextureHandles[0] = OpenGlUtils.loadTexture(MagicParams.context, "filter/brannan_blowout.png");
+		    /*	inputTextureHandles[0] = OpenGlUtils.loadTexture(MagicParams.context, "filter/brannan_blowout.png");
 				inputTextureHandles[1] = OpenGlUtils.loadTexture(MagicParams.context, "filter/overlaymap.png");
-				inputTextureHandles[2] = OpenGlUtils.loadTexture(MagicParams.context, "filter/amaromap.png");
+				inputTextureHandles[2] = OpenGlUtils.loadTexture(MagicParams.context, "filter/amaromap.png");*/
 		    }
 	    });
 	}

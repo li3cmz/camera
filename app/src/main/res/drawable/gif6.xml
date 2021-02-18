@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false"
+    >
+    <item android:drawable="@drawable/angry0" android:duration="100"/>
+    <item android:drawable="@drawable/angry1" android:duration="100"/>
+    <item android:drawable="@drawable/angry2" android:duration="100" />
+    <item android:drawable="@drawable/angry3" android:duration="100" />
+    <item android:drawable="@drawable/angry4" android:duration="100"/>
+    <item android:drawable="@drawable/angry5" android:duration="100"/>
+    <item android:drawable="@drawable/angry6" android:duration="100"/>
+    <item android:drawable="@drawable/angry7" android:duration="100"/>
+    <item android:drawable="@drawable/angry8" android:duration="100"/>
+    <item android:drawable="@drawable/angry9" android:duration="100"/>
+    <item android:drawable="@drawable/angry10" android:duration="100"/>
+    <item android:drawable="@drawable/angry11" android:duration="100"/>
+    <item android:drawable="@drawable/angry12" android:duration="100" />
+    <item android:drawable="@drawable/angry13" android:duration="100" />
+    <item android:drawable="@drawable/angry14" android:duration="100"/>
+    <item android:drawable="@drawable/angry15" android:duration="100"/>
+    <item android:drawable="@drawable/angry16" android:duration="100"/>
+    <item android:drawable="@drawable/angry17" android:duration="100"/>
+    <item android:drawable="@drawable/angry18" android:duration="100"/>
+    <item android:drawable="@drawable/angry19" android:duration="100"/>
+    <item android:drawable="@drawable/angry20" android:duration="100"/>
+
+    <item android:drawable="@drawable/angry21" android:duration="100"/>
+    <item android:drawable="@drawable/angry22" android:duration="100" />
+    <item android:drawable="@drawable/angry23" android:duration="100" />
+    <item android:drawable="@drawable/angry24" android:duration="100"/>
+    <item android:drawable="@drawable/angry25" android:duration="100"/>
+    <item android:drawable="@drawable/angry26" android:duration="100"/>
+    <item android:drawable="@drawable/angry27" android:duration="100"/>
+    <item android:drawable="@drawable/angry28" android:duration="100"/>
+    <item android:drawable="@drawable/angry29" android:duration="100"/>
+    <item android:drawable="@drawable/angry30" android:duration="100"/>
+    <item android:drawable="@drawable/angry31" android:duration="100"/>
+    <item android:drawable="@drawable/angry32" android:duration="100" />
+    <item android:drawable="@drawable/angry33" android:duration="100" />
+    <item android:drawable="@drawable/angry34" android:duration="100"/>
+    <item android:drawable="@drawable/angry35" android:duration="100"/>
+    <item android:drawable="@drawable/angry36" android:duration="100"/>
+    <item android:drawable="@drawable/angry37" android:duration="100"/>
+    <item android:drawable="@drawable/angry38" android:duration="100"/>
+    <item android:drawable="@drawable/angry39" android:duration="100"/>
+    <item android:drawable="@drawable/angry40" android:duration="100"/>
+
+    <item android:drawable="@drawable/angry41" android:duration="100" />
+    <item android:drawable="@drawable/angry42" android:duration="100"/>
+    <item android:drawable="@drawable/angry43" android:duration="100"/>
+    <item android:drawable="@drawable/angry44" android:duration="100"/>
+    <item android:drawable="@drawable/angry45" android:duration="100"/>
+    <item android:drawable="@drawable/angry46" android:duration="100"/>
+    <item android:drawable="@drawable/angry47" android:duration="100"/>
+    <item android:drawable="@drawable/angry48" android:duration="100"/>
+
+    <item android:drawable="@drawable/angry49" android:duration="100"/>
+    <item android:drawable="@drawable/angry50" android:duration="100"/>
+    <item android:drawable="@drawable/angry51" android:duration="100"/>
+    <item android:drawable="@drawable/angry52" android:duration="100"/>
+    <item android:drawable="@drawable/angry53" android:duration="100"/>
+    <item android:drawable="@drawable/angry54" android:duration="100"/>
+</animation-list>

@@ -1,7 +1,5 @@
 package com.seu.magicfilter.filter.base;
 
-import java.nio.FloatBuffer;
-
 import android.opengl.GLES11Ext;
 import android.opengl.GLES20;
 
@@ -9,6 +7,8 @@ import com.seu.magicfilter.R;
 import com.seu.magicfilter.filter.base.gpuimage.GPUImageFilter;
 import com.seu.magicfilter.utils.MagicParams;
 import com.seu.magicfilter.utils.OpenGlUtils;
+
+import java.nio.FloatBuffer;
 
 public class MagicCameraInputFilter extends GPUImageFilter{
 
@@ -23,7 +23,7 @@ public class MagicCameraInputFilter extends GPUImageFilter{
     private int mFrameHeight = -1;
 
     public MagicCameraInputFilter(){
-        super(OpenGlUtils.readShaderFromRawResource(R.raw.default_vertex) ,
+        super(OpenGlUtils.readShaderFromRawResource(R.raw.default_vertex),
                 OpenGlUtils.readShaderFromRawResource(R.raw.default_fragment));
     }
 
@@ -39,6 +39,8 @@ public class MagicCameraInputFilter extends GPUImageFilter{
         mTextureTransformMatrix = mtx;
     }
 
+
+    /////////////////////////////////////////////////////////////////////////////////////
     @Override
     public int onDrawFrame(int textureId) {
         GLES20.glUseProgram(mGLProgId);
@@ -66,6 +68,9 @@ public class MagicCameraInputFilter extends GPUImageFilter{
         GLES20.glBindTexture(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, 0);
         return OpenGlUtils.ON_DRAWN;
     }
+
+    /////////////////////////////////////////////////////////////////////////////////////
+
 
     @Override
     public int onDrawFrame(int textureId, FloatBuffer vertexBuffer, FloatBuffer textureBuffer) {
@@ -95,6 +100,9 @@ public class MagicCameraInputFilter extends GPUImageFilter{
         return OpenGlUtils.ON_DRAWN;
     }
 
+
+    /////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////
     public int onDrawToTexture(final int textureId) {
         if(mFrameBuffers == null)
             return OpenGlUtils.NO_TEXTURE;
@@ -127,6 +135,22 @@ public class MagicCameraInputFilter extends GPUImageFilter{
         GLES20.glViewport(0, 0, mOutputWidth, mOutputHeight);
         return mFrameBufferTextures[0];
     }
+
+
+    public int onDrawToTexture(final int textureId, FloatBuffer vertexBuffer, FloatBuffer textureBuffer) {
+        if(mFrameBuffers == null)
+            return OpenGlUtils.NO_TEXTURE;
+        runPendingOnDrawTasks();
+        GLES20.glViewport(0, 0, mFrameWidth, mFrameHeight);
+        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, mFrameBuffers[0]);
+        onDrawFrame(textureId,vertexBuffer,textureBuffer);
+        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0);
+        GLES20.glViewport(0, 0, mFrameWidth, mFrameHeight);
+        return mFrameBufferTextures[0];
+    }
+
+
+    /////////////////////////////////////////////////////////////////////////////////////
 
     public void initCameraFrameBuffer(int width, int height) {
         if(mFrameBuffers != null && (mFrameWidth != width || mFrameHeight != height))

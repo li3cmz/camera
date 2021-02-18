@@ -15,4 +15,5 @@
     <color name="filter_color_brown_light">#ff9933</color>
     <color name="slide_background">#8C474747</color>
     <color name="line">#8Cebebea</color>
+    <color name="album_back">#a5a7a7</color>
 </resources>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--
+        <android.opengl.GLSurfaceView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/glsurfaceview_camera_album"
+            android:visibility="gone"
+            />-->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <ImageView
+                android:id="@+id/btn_columns"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/album_back"></ImageView>
+
+            <ImageView
+                android:id="@+id/image2Photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/ic_blank"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
+        <!--最上方的相册和旋转相机按钮-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="5dp"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            android:background="@android:color/transparent">
+
+            <ImageView
+                android:id="@+id/btn_share1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/ic_share1" />
+
+            <ImageView
+                android:id="@+id/btn_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_share"
+                android:layout_marginRight="10dp"
+                />
+
+        </LinearLayout>
+
+
+        <include
+            android:id="@+id/layout_filter"
+            layout="@layout/filter_layout"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_gravity="bottom"
+            android:visibility="invisible" />
+
+        <!--下面的warp_content可能需要修改-->
+        <include
+            android:id="@+id/layout_sticker"
+            layout="@layout/static_sticker_layout"
+            android:layout_width="match_parent"
+            android:layout_height="298dp"
+            android:layout_gravity="bottom"
+            android:visibility="invisible" />
+        <!--下面的marginTop需要结合屏幕的大小-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="380dp"
+            android:id="@+id/btn_album_edit_columns"
+            >
+
+            <ImageView
+                android:id="@+id/btn_camera_sticker_album"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="120dip"
+                android:layout_marginTop="160dip"
+                android:background="@drawable/ic_sticker"
+                android:scaleType="center"></ImageView>
+
+            <ImageView
+                android:id="@+id/btn_camera_filter_album"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="160dip"
+                android:layout_weight="1.0"
+                android:scaleType="center"
+                android:background="@drawable/btn_camera_filter"></ImageView>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_download"
+                android:layout_marginTop = "220dip"
+                android:layout_marginLeft="150dip"
+                android:gravity="center_horizontal"
+                android:background="@drawable/ic_download"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_return"
+                android:id="@+id/btn_return"
+                android:layout_marginLeft="20dip"
+                android:layout_marginTop="225dip"
+                />
+
+        </FrameLayout>
+
+
+    </RelativeLayout>
+
+    <!--眼镜备用组件-->
+    <ImageView
+        android:id="@+id/glasses"
+        android:layout_width="64dp"
+        android:layout_height="60dp"
+
+        android:visibility="gone" />
+    <ImageView
+        android:id="@+id/glasses1"
+        android:layout_width="64dp"
+        android:layout_height="60dp"
+
+        android:visibility="gone" />
+    <ImageView
+        android:id="@+id/glasses2"
+        android:layout_width="64dp"
+        android:layout_height="60dp"
+
+        android:visibility="gone" />
+
+    <!--猫耳朵备用组件-->
+    <ImageView
+        android:id="@+id/catear"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+
+        android:visibility="gone" />
+    <ImageView
+        android:id="@+id/catear1"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+
+        android:visibility="gone" />
+
+
+
+    <!--鼻子备用组件-->
+    <ImageView
+        android:id="@+id/bizi"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+
+        android:visibility="gone" />
+    <ImageView
+        android:id="@+id/bizi1"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+
+        android:visibility="gone" />
+
+
+
+
+    <!--鼻子备用组件-->
+    <ImageView
+        android:id="@+id/saihong"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+
+        android:visibility="gone" />
+    <ImageView
+        android:id="@+id/saihong1"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+
+        android:visibility="gone" />
+
+
+    <ImageView
+        android:id="@+id/ferSticker"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/ferSticker1"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+
+        android:visibility="gone" />
+
+
+
+
+
+</RelativeLayout>

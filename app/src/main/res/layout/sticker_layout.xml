@@ -31,17 +31,17 @@
 
         <!--下面要修改-->
         <ImageView
-            android:id="@+id/btn_camera_filter1"
+            android:id="@+id/btn_sticker_latest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
             android:scaleType="center"
-            android:background="@drawable/ic_camera_filter_small"
+            android:background="@drawable/ic_sticker_latest"
             android:layout_marginLeft="170dip"
 
             />
         <ImageView
-            android:id="@+id/btn_camera_lip"
+            android:id="@+id/btn_camera_lip1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
@@ -60,7 +60,7 @@
 
     <!--下面的warp_content可能需要修改-->
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/audio_listView"
+        android:id="@+id/allsticker_listView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -71,13 +71,5 @@
 
     </android.support.v7.widget.RecyclerView>
 
-    <!--
-    <ImageView
-        android:background="@android:color/white"
-        android:id="@+id/btn_camera_closefilter"
-        android:layout_width="match_parent"
-        android:layout_height="26dip"
-        android:scaleType="center"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/btn_layout_filters_bar_close" />-->
+
 </LinearLayout>

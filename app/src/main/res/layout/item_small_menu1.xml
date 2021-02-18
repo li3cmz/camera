@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="120dp"
+    android:layout_height="60dp"
+    android:id="@+id/mMenu1"
+    android:background="@drawable/btn_menu1"
+    android:text="特效"
+    android:maxLength="4"
+    android:textSize="10sp"
+    android:gravity="center"
+    android:layout_marginLeft="120dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="20dp"
+    android:textColor="#FFFFFFFF" />

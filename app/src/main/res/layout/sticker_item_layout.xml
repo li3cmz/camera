@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:id="@+id/stickerItem_root"
+    android:layout_marginTop="5dp"
+    >
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/item_image1"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="0dp"
+            android:gravity="center_horizontal"
+            android:src="@drawable/sticker_say_hi"
+            />
+
+        <FrameLayout
+            android:id="@+id/item_image_selected1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginLeft="10dp"
+            >
+
+            <ImageView
+                android:id="@+id/sticker_item_image_selected_icon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/selector_sticker_selected" />
+        </FrameLayout>
+    </FrameLayout>
+
+
+
+
+</FrameLayout >

@@ -7,14 +7,21 @@ import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.opengl.EGL14;
 import android.opengl.GLES20;
+import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.SurfaceHolder;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.seu.magicfilter.camera.CameraEngine;
+import com.seu.magicfilter.camera.StickerView;
+import com.seu.magicfilter.camera.utils.BitmapUtil;
 import com.seu.magicfilter.camera.utils.CameraInfo;
 import com.seu.magicfilter.encoder.video.TextureMovieEncoder;
 import com.seu.magicfilter.filter.advanced.MagicBeautyFilter;
 import com.seu.magicfilter.filter.base.MagicCameraInputFilter;
+import com.seu.magicfilter.filter.base.gpuimage.GPUImageFilter;
 import com.seu.magicfilter.filter.helper.MagicFilterType;
 import com.seu.magicfilter.helper.SavePictureTask;
 import com.seu.magicfilter.utils.MagicParams;
@@ -22,8 +29,12 @@ import com.seu.magicfilter.utils.OpenGlUtils;
 import com.seu.magicfilter.utils.Rotation;
 import com.seu.magicfilter.utils.TextureRotationUtil;
 import com.seu.magicfilter.widget.base.MagicBaseView;
+import com.xiaojigou.luo.xjgarsdk.XJGArSdkApi;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
@@ -37,6 +48,26 @@ import javax.microedition.khronos.opengles.GL10;
  */
 public class MagicCameraView extends MagicBaseView {
 
+    /*##########*/
+    private Handler handler=null;
+    private StickerView stickerView;
+    private ImageView iv_show;
+    private RelativeLayout group;
+    public void setStickerView(StickerView st){
+        stickerView = st;
+    }
+    public void setIv_show(ImageView iv){
+        iv_show = iv;
+    }
+    public void setGroup(RelativeLayout g){
+        group = g;
+    }
+
+    public void setHandler(Handler handler) {
+        this.handler = handler;
+    }
+
+    /*##########*/
     private MagicCameraInputFilter cameraInputFilter;
     private MagicBeautyFilter beautyFilter;
 
@@ -47,6 +78,7 @@ public class MagicCameraView extends MagicBaseView {
     }
 
     private boolean recordingEnabled;
+    private boolean previewState;
     private int recordingStatus;
 
     private static final int RECORDING_OFF = 0;
@@ -62,7 +94,9 @@ public class MagicCameraView extends MagicBaseView {
         outputFile = new File(MagicParams.videoPath,MagicParams.videoName);
         recordingStatus = -1;
         recordingEnabled = false;
+        previewState = true;
         scaleType = ScaleType.CENTER_CROP;
+        XJGArSdkApi.XJGARSDKReleaseAllOpenglResources();///////////////////////////////没问题
     }
 
     @Override
@@ -76,6 +110,11 @@ public class MagicCameraView extends MagicBaseView {
         if(cameraInputFilter == null)
             cameraInputFilter = new MagicCameraInputFilter();
         cameraInputFilter.init();
+
+        if(filter == null)
+            filter = new GPUImageFilter();
+        filter.init();
+
         if (textureId == OpenGlUtils.NO_TEXTURE) {
             textureId = OpenGlUtils.getExternalOESTextureID();
             if (textureId != OpenGlUtils.NO_TEXTURE) {
@@ -88,7 +127,8 @@ public class MagicCameraView extends MagicBaseView {
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
         super.onSurfaceChanged(gl, width, height);
-        openCamera();
+        if (previewState == true)
+            openCamera();
     }
 
     @Override
@@ -97,7 +137,8 @@ public class MagicCameraView extends MagicBaseView {
         if(surfaceTexture == null)
             return;
         surfaceTexture.updateTexImage();
-        if (recordingEnabled) {
+
+        if (recordingEnabled){
             switch (recordingStatus) {
                 case RECORDING_OFF:
                     CameraInfo info = CameraEngine.getCameraInfo();
@@ -106,7 +147,7 @@ public class MagicCameraView extends MagicBaseView {
                     videoEncoder.setCubeBuffer(gLCubeBuffer);
                     videoEncoder.startRecording(new TextureMovieEncoder.EncoderConfig(
                             outputFile, info.previewWidth, info.pictureHeight,
-                            3500000, EGL14.eglGetCurrentContext(),
+                            1000000, EGL14.eglGetCurrentContext(),
                             info));
                     recordingStatus = RECORDING_ON;
                     break;
@@ -136,13 +177,19 @@ public class MagicCameraView extends MagicBaseView {
         surfaceTexture.getTransformMatrix(mtx);
         cameraInputFilter.setTextureTransformMatrix(mtx);
         int id = textureId;
+        int finalTexture=0;
         if(filter == null){
-            cameraInputFilter.onDrawFrame(textureId, gLCubeBuffer, gLTextureBuffer);
+            // filter = new GPUImageFilter();
+            // filter.init();
+            cameraInputFilter.onDrawFrame(id, gLCubeBuffer, gLTextureBuffer);
         }else{
-            id = cameraInputFilter.onDrawToTexture(textureId);
-            filter.onDrawFrame(id, gLCubeBuffer, gLTextureBuffer);
+            id = cameraInputFilter.onDrawToTexture(textureId,gLCubeBuffer,gLTextureBuffer);
+            GLES20.glViewport(0,0,surfaceWidth, surfaceHeight);
+            finalTexture = XJGArSdkApi.XJGARSDKRenderGLTexToGLTex(id,imageWidth,imageHeight);
+            GLES20.glViewport(0,0,surfaceWidth, surfaceHeight);
+            filter.onDrawFrame(finalTexture, filter.mGLCubeBuffer, filter.mGLTextureBuffer);//gLCubeBuffer, gLTextureBuffer
         }
-        videoEncoder.setTextureId(id);
+        videoEncoder.setTextureId(finalTexture);
         videoEncoder.frameAvailable(surfaceTexture);
     }
 
@@ -159,11 +206,18 @@ public class MagicCameraView extends MagicBaseView {
         super.setFilter(type);
         videoEncoder.setFilter(type);
     }
-
+    boolean flag =false;
+    CameraInfo info;
     private void openCamera(){
         if(CameraEngine.getCamera() == null)
-            CameraEngine.openCamera();
-        CameraInfo info = CameraEngine.getCameraInfo();
+            //CameraEngine.openCamera();
+            flag = CameraEngine.openCamera(stickerView);
+        if (flag == true){
+            info = CameraEngine.getCameraInfo();
+        }
+        else{
+            System.out.println("大笨蛋！！！！！！！！！！！！！！！！！！！！1");
+        }
         if(info.orientation == 90 || info.orientation == 270){
             imageWidth = info.previewHeight;
             imageHeight = info.previewWidth;
@@ -172,19 +226,31 @@ public class MagicCameraView extends MagicBaseView {
             imageHeight = info.previewHeight;
         }
         cameraInputFilter.onInputSizeChanged(imageWidth, imageHeight);
-        adjustSize(info.orientation, info.isFront, true);
+        cameraInputFilter.initCameraFrameBuffer(imageWidth, imageHeight);
+        filter.onInputSizeChanged(imageWidth,imageHeight);
+        int orientation = info.orientation;
+        orientation = (orientation + 180)%360;
+
+        adjustSize(orientation, info.isFront, true);
         if(surfaceTexture != null)
-            CameraEngine.startPreview(surfaceTexture);
+            CameraEngine.startPreview(surfaceTexture);//开始
     }
+
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         super.surfaceDestroyed(holder);
         CameraEngine.releaseCamera();
+       // cameraInputFilter.destroyFramebuffers();
+        XJGArSdkApi.XJGARSDKReleaseAllOpenglResources();
     }
 
     public void changeRecordingState(boolean isRecording) {
         recordingEnabled = isRecording;
+    }
+
+    public void changePreviewState(boolean isPreview){
+        previewState = isPreview;
     }
 
     protected void onFilterChanged(){
@@ -196,6 +262,7 @@ public class MagicCameraView extends MagicBaseView {
             cameraInputFilter.destroyFramebuffers();
     }
 
+
     @Override
     public void savePicture(final SavePictureTask savePictureTask) {
         CameraEngine.takePicture(null, null, new Camera.PictureCallback() {
@@ -203,19 +270,61 @@ public class MagicCameraView extends MagicBaseView {
             public void onPictureTaken(byte[] data, Camera camera) {
                 CameraEngine.stopPreview();
                 final Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                System.out.println(bitmap);
                 queueEvent(new Runnable() {
                     @Override
                     public void run() {
                         final Bitmap photo = drawPhoto(bitmap,CameraEngine.getCameraInfo().isFront);
-                        GLES20.glViewport(0, 0, surfaceWidth, surfaceHeight);
-                        if (photo != null)
-                            savePictureTask.execute(photo);
+                        GLES20.glViewport(0, 0, bitmap.getWidth(), bitmap.getHeight());//surfaceWidth, surfaceHeight
+                        /*#####################*/
+                        if (photo != null){
+                            final String fileName = savePictureTask.file.getAbsolutePath();
+                            Log.d("save",fileName);
+                            // savePictureTask.execute(photo);
+
+                            File file = new File(fileName);
+                            FileOutputStream fos = null;
+                            try {
+                                fos = new FileOutputStream(file);
+                                photo.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                                fos.flush();
+                                fos.close();
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            Bitmap imagbitmap= BitmapUtil.decodeSampledBitmapFromResource(fileName,photo.getWidth(),
+                                    photo.getHeight());
+                            imagbitmap=BitmapUtil.rotaingImageView(360, imagbitmap);
+
+                            handler.obtainMessage(1,imagbitmap).sendToTarget();
+
+                            File file2 = new File(fileName);
+
+                            try {
+                                FileOutputStream fos2 = new FileOutputStream(file2);
+                                group.getDrawingCache().compress(Bitmap.CompressFormat.JPEG, 100, fos2);
+                                fos2.flush();
+                                fos2.close();
+                                handler.obtainMessage(2,null).sendToTarget();
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                        if (previewState==true)
+                            CameraEngine.startPreview();
+                        /*#########################*/
                     }
                 });
-                CameraEngine.startPreview();
             }
         });
     }
+
+
 
     private Bitmap drawPhoto(Bitmap bitmap,boolean isRotated){
         int width = bitmap.getWidth();

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false"
+    >
+    <item android:drawable="@drawable/calm0" android:duration="100"/>
+    <item android:drawable="@drawable/calm1" android:duration="100"/>
+    <item android:drawable="@drawable/calm2" android:duration="100" />
+    <item android:drawable="@drawable/calm3" android:duration="100" />
+    <item android:drawable="@drawable/calm4" android:duration="100"/>
+    <item android:drawable="@drawable/calm5" android:duration="100"/>
+    <item android:drawable="@drawable/calm6" android:duration="100"/>
+    <item android:drawable="@drawable/calm7" android:duration="100"/>
+    <item android:drawable="@drawable/calm8" android:duration="100"/>
+    <item android:drawable="@drawable/calm9" android:duration="100"/>
+    <item android:drawable="@drawable/calm10" android:duration="100"/>
+    <item android:drawable="@drawable/calm11" android:duration="100"/>
+    <item android:drawable="@drawable/calm12" android:duration="100" />
+    <item android:drawable="@drawable/calm13" android:duration="100" />
+    <item android:drawable="@drawable/calm14" android:duration="100"/>
+    <item android:drawable="@drawable/calm15" android:duration="100"/>
+    <item android:drawable="@drawable/calm16" android:duration="100"/>
+    <item android:drawable="@drawable/calm17" android:duration="100"/>
+    <item android:drawable="@drawable/calm18" android:duration="100"/>
+    <item android:drawable="@drawable/calm19" android:duration="100"/>
+    <item android:drawable="@drawable/calm20" android:duration="100"/>
+    <item android:drawable="@drawable/calm21" android:duration="100"/>
+</animation-list>

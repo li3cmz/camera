@@ -1,11 +1,10 @@
 package com.seu.magicfilter;
 
-import android.content.Context;
-
 import com.seu.magicfilter.camera.CameraEngine;
+import com.seu.magicfilter.camera.StickerView;
 import com.seu.magicfilter.filter.helper.MagicFilterType;
-import com.seu.magicfilter.utils.MagicParams;
 import com.seu.magicfilter.helper.SavePictureTask;
+import com.seu.magicfilter.utils.MagicParams;
 import com.seu.magicfilter.widget.MagicCameraView;
 import com.seu.magicfilter.widget.base.MagicBaseView;
 
@@ -47,6 +46,11 @@ public class MagicEngine {
             ((MagicCameraView)MagicParams.magicBaseView).changeRecordingState(false);
     }
 
+    public void stop(){
+        if(MagicParams.magicBaseView instanceof MagicCameraView)
+            ((MagicCameraView)MagicParams.magicBaseView).changePreviewState(false);
+    }
+
     public void setBeautyLevel(int level){
         if(MagicParams.magicBaseView instanceof MagicCameraView && MagicParams.beautyLevel != level) {
             MagicParams.beautyLevel = level;
@@ -54,8 +58,11 @@ public class MagicEngine {
         }
     }
 
-    public void switchCamera(){
+    /*public void switchCamera(){
         CameraEngine.switchCamera();
+    }*/
+    public void switchCamera(StickerView stickerView){
+        CameraEngine.switchCamera(stickerView);
     }
 
     public static class Builder{
@@ -67,6 +74,8 @@ public class MagicEngine {
         }
 
         public Builder setVideoPath(String path){
+
+
             MagicParams.videoPath = path;
             return this;
         }
@@ -77,4 +86,5 @@ public class MagicEngine {
         }
 
     }
+
 }

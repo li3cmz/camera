@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false"
+    >
+    <item android:drawable="@drawable/happinesses0" android:duration="100"/>
+    <item android:drawable="@drawable/happinesses1" android:duration="100"/>
+    <item android:drawable="@drawable/happinesses2" android:duration="100" />
+    <item android:drawable="@drawable/happinesses3" android:duration="100" />
+    <item android:drawable="@drawable/happinesses4" android:duration="100"/>
+    <item android:drawable="@drawable/happinesses5" android:duration="100"/>
+    <item android:drawable="@drawable/happinesses6" android:duration="100"/>
+    <item android:drawable="@drawable/happinesses7" android:duration="100"/>
+    <item android:drawable="@drawable/happinesses8" android:duration="100"/>
+    <item android:drawable="@drawable/happinesses9" android:duration="100"/>
+    <item android:drawable="@drawable/happinesses10" android:duration="100"/>
+    <item android:drawable="@drawable/happinesses11" android:duration="100"/>
+    <item android:drawable="@drawable/happinesses12" android:duration="100" />
+    <item android:drawable="@drawable/happinesses13" android:duration="100" />
+    <item android:drawable="@drawable/happinesses14" android:duration="100"/>
+    <item android:drawable="@drawable/happinesses15" android:duration="100"/>
+    <item android:drawable="@drawable/happinesses16" android:duration="100"/>
+    <item android:drawable="@drawable/happinesses17" android:duration="100"/>
+    <item android:drawable="@drawable/happinesses18" android:duration="100"/>
+    <item android:drawable="@drawable/happinesses19" android:duration="100"/>
+</animation-list>

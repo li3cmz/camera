@@ -9,11 +9,11 @@ android {
             storePassword '333333'
         }
     }
-    compileSdkVersion 24
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.seu.magiccamera"
         minSdkVersion 17
-        targetSdkVersion 24
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -38,6 +38,12 @@ android {
         // but continue the build even when errors are found:
         abortOnError false
     }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
 
     //ndk {
         //选择要添加的对应cpu类型的.so库
@@ -49,13 +55,14 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:24.0.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation (name:'xjgarsdklibrary-release-9.1.0-2018-02-07', ext:'aar')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     //androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2.vg0.2'
     implementation project(':magicfilter')
-    implementation 'com.android.support:recyclerview-v7:24.0.0'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation files('libs/Msc.jar')
     implementation 'com.alibaba:fastjson:1.2.8'
 }
